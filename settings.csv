@@ -1,0 +1,26 @@
+﻿File Extension,Folder to move to
+.txt,\Users\your_username\Documents\Downloads
+.doc,\Users\your_username\Documents\Downloads
+.docx,\Users\your_username\Documents\Downloads
+.pdf,\Users\your_username\Documents\Downloads
+.xls,\Users\your_username\Documents\Downloads
+.xlsx,\Users\your_username\Documents\Downloads
+.ppt,\Users\your_username\Documents\Downloads
+.pptx,\Users\your_username\Documents\Downloads
+.png,\Users\your_username\Pictures\Downloads
+.jpeg,\Users\your_username\Pictures\Downloads
+.jpg,\Users\your_username\Pictures\Downloads
+.gif,\Users\your_username\Pictures\Downloads
+.tiff,\Users\your_username\Pictures\Downloads
+.mp4,\Users\your_username\Videos\Downloads
+.mov,\Users\your_username\Videos\Downloads
+.wmv,\Users\your_username\Videos\Downloads
+.mp3,\Users\your_username\Music\Downloads
+.flac,\Users\your_username\Music\Downloads
+.wav,\Users\your_username\Music\Downloads
+.exe,\Users\your_username\Downloads\Software
+.msi,\Users\your_username\Downloads\Software
+.rar,\Users\your_username\Downloads\Compressed
+.zip,\Users\your_username\Downloads\Compressed
+.7z,\Users\your_username\Downloads\Compressed
+.torrent,\Users\your_username\Downloads\Torrents
