@@ -10,7 +10,7 @@ C:\Users\your_username\Music
 D:\External_hard_drive\Pictures
 
 In the csv file, you can also add additional file names, just remember to add the destination path beside it.
-Also in the csv file, if you like what I set to be the default you will want to replace your_username with your windows. If you are unsure what your username is, just press the windows key and R and then type %username%. You will get an error message, and this error mesage will give your username in single quotation marks.
+Also in the csv file, if you like what I set to be the default you will want to replace 'your_username' with your windows username. If you are unsure what your username is, just press the windows key and R buttons to open the run dialog and then type %username%. You will get an error message, and this error mesage will give your username in single quotation marks.
 
 If you want a quick way to replace your_username in the .csv file for all of the entries, open excel, and use its built in find and replace function. :)
 
