@@ -9,10 +9,14 @@ C:\Users\your_username\Music
 \users\your_username\Movies
 D:\External_hard_drive\Pictures
 
-In the csv file, you can also add additional file names, just remember to add the destination path beside it.
-Also in the csv file, if you like what I set to be the default you will want to replace 'your_username' with your windows username. If you are unsure what your username is, just press the windows key and R buttons to open the run dialog and then type %username%. You will get an error message, and this error mesage will give your username in single quotation marks.
+In linux (at least in Ubuntu), here are examples of 
 
-If you want a quick way to replace your_username in the .csv file for all of the entries, open excel, and use its built in find and replace function. :)
+In the csv file, you can also add additional file names, just remember to add the destination path beside it.
+Also in the csv file, if you like what I set to be the default you will want to replace 'your_username' with your username. If you are unsure what your username is in Windows, just press the windows key and R buttons to open the run dialog and then type %username%. You will get an error message, and this error mesage will give your username in single quotation marks.
+
+In linux, you should know what your username is, but if you're unsure, then in Ubuntu, you can press Ctrl+Alt+T and a terminal window will open and it will say your_username@your_computername
+
+If you want a quick way to replace your_username in the .csv file for all of the entries, open excel, and use its built in find and replace function. :) (LibreOffice Calc works too)
 
 
 
@@ -30,4 +34,6 @@ with open('directory_to_monitor.txt') as f:
 So I would just need to rearrange a bit of code and add that for loop. If I get requests to do so, I will update this project.
 
 
-Lastly, to get this to work automatically and in the background, you could make a shortcut to the main.py file, and put it in your startup folder. The program will run for a few seconds or less then close automatically, and while you are using the computer, the files won't move around when you're not expecting them to.
+Lastly, to get this to work automatically and in the background, you could make a shortcut to the main.py file, and put it in your startup folder. (Windows) The program will run for a few seconds or less then close automatically, and while you are using the computer, the files won't move around when you're not expecting them to.
+
+For linux, there are other ways to run the script at startup
