@@ -9,7 +9,10 @@ C:\Users\your_username\Music
 \users\your_username\Movies
 D:\External_hard_drive\Pictures
 
-In linux (at least in Ubuntu), here are examples of 
+In linux (at least in Ubuntu), here are examples of valid paths:
+/home/your_username/Music
+/home/your_username/Movies
+/media/External_hard_drive/Pictures
 
 In the csv file, you can also add additional file names, just remember to add the destination path beside it.
 Also in the csv file, if you like what I set to be the default you will want to replace 'your_username' with your username. If you are unsure what your username is in Windows, just press the windows key and R buttons to open the run dialog and then type %username%. You will get an error message, and this error mesage will give your username in single quotation marks.
