@@ -20,7 +20,7 @@ File Extension,Folder to move to
 .wav,/home/your_username/Music/Downloads
 .exe,/home/your_username/Downloads/Software
 .msi,/home/your_username/Downloads/Software
-.tar.gz,/home/your_username/Downloads/Software
+.gz,/home/your_username/Downloads/Compressed
 .deb,/home/your_username/Downloads/Software
 .jar,/home/your_username/Downloads/Software
 .rar,/home/your_username/Downloads/Compressed
