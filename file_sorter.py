@@ -27,13 +27,16 @@ def get_dir():
     if os.path.isdir(dir):
         pass
     else:
+        #first run
+        print("Hi! Welcome to Arun's File Sorter.")
+
+        #for some reason, had to make u a variable, otherwise when I tried to concatenate strings,
+        #it would say function object at 0x>memory address< instead of the username
+        u=getuser()
         while not os.path.isdir(dir):
             while 1:
                 use_dwnld_fldr = input('Would you like to monitor and sort the downloads folder? (y)es/(n)o: ')
                 if use_dwnld_fldr.startswith('y'):
-                    #for some reason, had to make u a variable, otherwise when I tried to concatenate strings,
-                    #it would say function object at 0x>memory address< instead of the username
-                    u=getuser()
                     if platform.startswith('linux'):
                         dir='/home/{}/Downloads'.format(u)
                         break
@@ -48,7 +51,7 @@ def get_dir():
                     if os.path.isdir(dir):
                         break
                     else:
-                        print('Oops! Invalid path entered, start again...')
+                        print('Oops! Invalid path entered, or folder does not exist! Start again...')
 
                 else:
                     print('Oops! Invald selection, try again!')
@@ -61,8 +64,30 @@ def get_dir():
         with open('settings.csv') as f:
             data=list(csv.reader(f))
         data[0][1]=dir
+
+        if use_dwnld_fldr.startswith('y'):
+            for line in data:
+                line[fldr_idx]=line[fldr_idx].replace('your_username',u)
+
+        else:
+            if platform.startswith('linux'):
+                if not dir.endswith('/'):
+                    dir+='/'
+                for line in data:
+                    line[2]=line[2].replace('/home/your_username/Downloads/',dir)
+
+            elif platform.startswith('win32'):
+                if not dir.endswith('\\'):
+                    dir+='\\'
+                for line in data:
+                    line[1]=line[1].replace('\\Users\\your_username\\Downloads\\',dir)
+
         with open('settings.csv','w') as f:
             csv.writer(f).writerows(data)
+
+        print('''\nI have automatically configured some settings for you. Files inside the folder you chose to monitor will be moved to a subfolder for its corresponding file type.\n
+For example: if you chose the Downloads folder, your pictures in the Downloads folder will be moved to Downloads{0}Pictures. If you would like to change where these files get moved to, feel
+free to edit the settings.csv file with your favourite editor like Excel, and edit the column for Linux or Windows\n'''.format(slash))
     return dir
 
 def get_files_in_dir(dir):
@@ -104,7 +129,7 @@ def sort_files(files_in_dir,dir):
 
                     try:
                         shutil.move(_if,_of)
-                        #print('{}\nmoved to\n{}\n'.format(_if,_of))
+                        print('{}\nmoved to\n{}\n'.format(_if,_of))
 
                     except FileNotFoundError:
                         os.makedirs(line[fldr_idx])
