@@ -1,4 +1,4 @@
-Folder to monitor: ->,bleh,---
+Folder to monitor: ->,/home/arunscape/Downloads,---
 File Extension,Folder to move to (Windows),Folder to move to (Linux)
 .txt,\Users\your_username\Downloads\Documents,/home/your_username/Downloads/Documents
 .doc,\Users\your_username\Downloads\Documents,/home/your_username/Downloads/Documents
