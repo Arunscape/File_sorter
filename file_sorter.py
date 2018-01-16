@@ -90,8 +90,8 @@ def sort_files(files_in_dir,dir):
                     _of=''.join([line[fldr_idx],slash,file])
 
                     try:
-                        #shutil.move(_if,_of)
-                        print('{}\nmoved to\n{}\n'.format(_if,_of))
+                        shutil.move(_if,_of)
+                        #print('{}\nmoved to\n{}\n'.format(_if,_of))
 
                     except FileNotFoundError:
                         os.makedirs(line[fldr_idx])
