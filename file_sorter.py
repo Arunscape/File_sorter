@@ -80,6 +80,19 @@ def sort_files(files_in_dir,dir):
         #read relevant info from file
         data=list(csv.reader(f))
 
+        #speed improvements:
+        #I just read the first lines in the csv file to skip them, instead of
+        #copying the entire csv file then popping data I need to eliminate
+
+        #before, I was iterating over every file, then attempting to find a matching
+        #extension in the csv file. Now, I iterate over the extensions in the
+        #csv file and try to find files that match. That way, if there are
+        #multiple files with the same extension, I don't read the list as many
+        #times. Additionally, before if there were files with extensions that
+        #aren't on the list, the extension would still be compared with the csv file.
+        #Also, theoretically, as more files get sorted, there are less files to
+        #compare extensions with
+        #It is possible that all these 'enhancements' produce no perceptible difference in performance lol
         for line in data:
             for file in files_in_dir:
                #if actual file extension == extension in csv file
