@@ -3,7 +3,7 @@
 A python script to sort files in a messy folder, such as your Downloads or Desktop folders.
 ###### Written for Windows and Linux
 
-##Usage Instructions
+## Usage Instructions
 
 1. On the first run, the script will ask you if you want to monitor your Downloads folder. If you enter 'n' or 'no' then, it will ask
 you which folder you want to monitor.
