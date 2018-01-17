@@ -43,9 +43,7 @@ def get_dir():
                     elif platform.startswith('win32'):
                         dir='C:\\Users\\{}\\Downloads'.format(u)
                         break
-                    else:
-                        raise Exception('OS not supported, use Windows or Linux!')
-
+                        
                 elif use_dwnld_fldr.startswith('n'):
                     dir=input('Enter the path of the folder you wish to monitor\n')
                     if os.path.isdir(dir):
@@ -82,12 +80,15 @@ def get_dir():
                 for line in data:
                     line[1]=line[1].replace('\\Users\\your_username\\Downloads\\',dir)
 
-        with open('settings.csv','w') as f:
-            csv.writer(f).writerows(data)
+        if platform.startswith('linux'):
+            with open('settings.csv','w') as f:
+                csv.writer(f).writerows(data)
+        elif platform.startswith('win32'):
+            with open('settings.csv','w',newline='') as f:
+                csv.writer(f).writerows(data)
 
         print('''\nI have automatically configured some settings for you. Files inside the folder you chose to monitor will be moved to a subfolder for its corresponding file type.\n
-For example: if you chose the Downloads folder, your pictures in the Downloads folder will be moved to Downloads{0}Pictures. If you would like to change where these files get moved to, feel
-free to edit the settings.csv file with your favourite editor like Excel, and edit the column for Linux or Windows\n'''.format(slash))
+For example: if you chose the Downloads folder, your pictures in the Downloads folder will be moved to Downloads{0}Pictures. If you would like to change where these files get moved to, feel free to edit the settings.csv file with your favourite editor like Excel, and edit the column for Linux or Windows\n'''.format(slash))
         input('Press Enter to continue...')
     return dir
 
