@@ -4,6 +4,7 @@ import csv
 import shutil #for moving files
 from sys import platform #to detect which os the person is using
 from getpass import getuser #to get username of the person running script
+from datetime import datetime #for logs
 
 #import setup
 #need to actually make setup file, for now just get base functionality working
@@ -43,7 +44,7 @@ def get_dir():
                     elif platform.startswith('win32'):
                         dir='C:\\Users\\{}\\Downloads'.format(u)
                         break
-                        
+
                 elif use_dwnld_fldr.startswith('n'):
                     dir=input('Enter the path of the folder you wish to monitor\n')
                     if os.path.isdir(dir):
@@ -107,38 +108,52 @@ def sort_files(files_in_dir,dir):
         #read relevant info from file
         data=list(csv.reader(f))
 
-        #speed improvements:
-        #I just read the first lines in the csv file to skip them, instead of
-        #copying the entire csv file then popping data I need to eliminate
+    #speed improvements:
+    #I just read the first lines in the csv file to skip them, instead of
+    #copying the entire csv file then popping data I need to eliminate
 
-        #before, I was iterating over every file, then attempting to find a matching
-        #extension in the csv file. Now, I iterate over the extensions in the
-        #csv file and try to find files that match. That way, if there are
-        #multiple files with the same extension, I don't read the list as many
-        #times. Additionally, before if there were files with extensions that
-        #aren't on the list, the extension would still be compared with the csv file.
-        #Also, theoretically, as more files get sorted, there are less files to
-        #compare extensions with
-        #It is possible that all these 'enhancements' produce no perceptible difference in performance lol
-        for line in data:
-            for file in files_in_dir:
-               #if actual file extension == extension in csv file
-                if os.path.splitext(file)[1] == line[0]:
-                    #if: input file
-                    #of: output file
-                    _if=''.join([dir,slash,file])
-                    _of=''.join([line[fldr_idx],slash,file])
+    #before, I was iterating over every file, then attempting to find a matching
+    #extension in the csv file. Now, I iterate over the extensions in the
+    #csv file and try to find files that match. That way, if there are
+    #multiple files with the same extension, I don't read the list as many
+    #times. Additionally, before if there were files with extensions that
+    #aren't on the list, the extension would still be compared with the csv file.
+    #Also, theoretically, as more files get sorted, there are less files to
+    #compare extensions with
+    #It is possible that all these 'enhancements' produce no perceptible difference in performance lol
+    f=open('log.txt','a')
+    now=datetime.now().strftime("%A, %B. %d %Y %I:%M:%S %p")
+    f.write('================================================================\n')
+    f.write(now+'\n')
+    f.write('----------------------------------------------------------------\n\n')
+    for line in data:
+        for file in files_in_dir:
+           #if actual file extension == extension in csv file
+            if os.path.splitext(file)[1] == line[0]:
+                #if: input file
+                #of: output file
+                _if=''.join([dir,slash,file])
+                _of=''.join([line[fldr_idx],slash,file])
 
-                    try:
-                        shutil.move(_if,_of)
-                        print('{}\nmoved to\n{}\n'.format(_if,_of))
+                try:
+                    f.write('Attempting to move {}\n to\n{}\n'.format(_if,_of))
+                    shutil.move(_if,_of)
+                    #print('{}\nmoved to\n{}\n'.format(_if,_of))
 
-                    except FileNotFoundError:
-                        os.makedirs(line[fldr_idx])
-                        shutil.move(_if,_of)
+                except FileNotFoundError:
+                    f.write('FileNotFoundError: attempting to fix by creating directory: {}\n'.format(line[fldr_idx]))
+                    f.write('Trying again...\n')
 
-                    except:
-                        raise Exception('Something happened, file could not be moved.')
+                    os.makedirs(line[fldr_idx])
+                    shutil.move(_if,_of)
 
+                    f.write('Success\n\n')
+                except:
+                    f.write('Error: failed to move {}\n to\n{}\nYour file has not been moved\n\n'.format(_if,_of))
+
+                else:
+                    f.write('Success!\n\n')
+    f.write('================================================================\n\n')
+    f.close()
 dir=get_dir()
 sort_files(get_files_in_dir(dir),dir)
