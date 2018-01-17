@@ -1,2 +1,3 @@
 # lastest update may have broken functionality in windows but it seems to work in linux. further testing required, and readme needs update...
 ### but a lot of functionality and user friendly features were added like platform indepencence (windows/linux), and no need to manually edit the settings.csv file if you're content with the default settings
+update: in windows, extra spaces are added each line to the written csv file, need to investigate
