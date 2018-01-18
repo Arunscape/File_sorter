@@ -21,6 +21,15 @@ else:
     raise Exception('OS not supported, use Windows or Linux!')
 
 def get_dir():
+    """Reads from 'settings.csv' and returns the directory that the user chose to monitor.
+    If the directory is invalid, i.e. when the script runs for the first time, the user goes through a setup process
+
+    Args:
+        None
+
+    Returns:
+        String which represents a directory
+    """
     with open('settings.csv') as f:
         #before, the whole file was read. Now, this just gets the 1st row, then trims to get 1st column
         dir=next(csv.reader(f))[1]
@@ -94,12 +103,38 @@ For example: if you chose the Downloads folder, your pictures in the Downloads f
     return dir
 
 def get_files_in_dir(dir):
-    #global slash
+    '''Returns a list of files in a directory
+
+    Args:
+        dir: the directory
+
+    Returns:
+        list of files in the directory
+
+    Examples:
+    #In windows
+    >>> get_files_in_dir('C:\\Users\The_Virgin_Windows_User\\Downloads')
+    ['virus.exe','pr0n.mp4','katyperry.mp3']
+    #In linux:
+    >>> get_files_in_dir('/home/The_Chad_Linux_User/Downloads')
+    ['script.sh','git-cheatsheat.tex','rm -rf script']
+    '''
+
     everything_in_folder=os.listdir(dir)
     files_in_dir=[f for f in everything_in_folder if os.path.isfile(''.join([dir,slash,f]))]
     return files_in_dir
 
 def sort_files(files_in_dir,dir):
+    '''Sorts files in a given directory, the heart of this script
+
+    Args:
+        dir: the directory
+        files_in_dir: the files in the directory
+
+    Returns:
+        Nothing, but it moves files, and the data is logged in log.txt
+    '''
+
     #global slash, fldr_idx
     with open('settings.csv') as f:
         #skip the first 2 lines
